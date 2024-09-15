@@ -83,53 +83,7 @@ mood_to_scale = {
     'energetic': 'E Major',
     'calm': 'D Major',
     # Add more moods and corresponding scales
-}
-Example
-plaintext
-Copy code
-   ___
-o|* *|o
-o|* *|o
-o|* *|o
- \===/
-  |||
-  |||
-  |||
-  |||
-___|||___
-/   |||   \
-/    |||    \
-|     |||     |
- \   (|||)   /
-  |   |||   |
-/    |||    \
-/     |||     \
-/      |||      \
-|     [===]     |
- \             /
-  '.         .'
-    '-------'
 
-Enter a mood for your chord progression: happy
-Do you want the chords to be arpeggiated? (yes/no): yes
-Do you want to include passing tones between chords? (yes/no): yes
-Do you want a random chord progression? (yes/no): no
-
-Mood: Happy
-Scale: C Major
-8-Bar Chord Progression:
-Bar 1: G
-Bar 2: Dm
-Bar 3: Em
-Bar 4: Am
-Bar 5: F
-Bar 6: Bdim
-Bar 7: C
-Bar 8: Em
-
-MIDI file saved to C:\Users\joshf\OneDrive\Desktop\CHORD GENERATOR SCRIPT\chords created\happy_chord_progression.mid
-License
-This project is open-source and available under the MIT License.
 
 Contributing
 Contributions are welcome! Please feel free to submit a Pull Request.
