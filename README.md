@@ -23,8 +23,6 @@ pip (Python package installer)
 Dependencies
 Install the required Python library:
 
-bash
-Copy code
 pip install midiutil
 Download the Script
 Clone the repository or download the chord_progression_generator.py script directly.
@@ -32,13 +30,9 @@ Clone the repository or download the chord_progression_generator.py script direc
 Usage
 Navigate to the Script Directory:
 
-bash
-Copy code
 cd path/to/script/directory
 Run the Script:
 
-bash
-Copy code
 python chord_progression_generator.py
 Follow the Prompts:
 
@@ -55,19 +49,14 @@ Configuration
 Set the Output Folder
 By default, the MIDI files are saved to:
 
-python
-Copy code
 folder_path = r'C:\Users\joshf\OneDrive\Desktop\CHORD GENERATOR SCRIPT\chords created'
 To change the output folder, modify the folder_path variable in the script:
 
-python
-Copy code
 folder_path = r'path\to\your\desired\folder'
 Expand the Chord Library
 You can add more chords to the chord_midi dictionary:
 
-python
-Copy code
+
 chord_midi = {
     # Existing chords...
     'Caug': [60, 64, 68],  # Example of adding C augmented chord
@@ -76,8 +65,6 @@ chord_midi = {
 Add More Moods and Scales
 Update the mood_to_scale dictionary to include more moods:
 
-python
-Copy code
 mood_to_scale = {
     # Existing moods...
     'energetic': 'E Major',
