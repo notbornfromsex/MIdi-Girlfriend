@@ -24,7 +24,9 @@ Dependencies
 Install the required Python library:
 
 pip install midiutil
+
 Download the Script
+
 Clone the repository or download the chord_progression_generator.py script directly.
 
 Usage
