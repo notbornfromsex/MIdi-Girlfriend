@@ -36,9 +36,11 @@ cd path/to/script/directory
 Run the Script:
 
 python chord_progression_generator.py
+
 Follow the Prompts:
 
 Enter a Mood: Input the desired mood (e.g., happy, sad, mysterious).
+
 Customization Options:
 Arpeggiation: Choose whether to arpeggiate chords (yes or no).
 Passing Tones: Decide if you want passing tones between chords (yes or no).
