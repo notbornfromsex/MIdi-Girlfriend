@@ -139,8 +139,7 @@ chord_midi = {
     'Cadd9': [60, 64, 67, 74],
     'Csus4': [60, 65, 67],
     'Csus2': [60, 62, 67],
-    # You can add similar chords for other root notes
-    # ...
+    # Add more chords as needed
 }
 
 def chord_to_midi_notes(chord):
@@ -183,31 +182,41 @@ def save_chord_progression_as_midi(progression, filename, arpeggiated=False, inc
     """
     midi = MIDIFile(1)  # One track
     track = 0
+    channel = 0
     time = 0  # Start at the beginning
     tempo = 120  # Beats per minute
     volume = 100  # Max volume
 
     midi.addTempo(track, time, tempo)
 
+    bar_duration = 1  # Duration of each bar in beats
+
     for i, chord in enumerate(progression):
         notes = chord_to_midi_notes(chord)
+        if not notes:
+            print(f"Warning: Chord '{chord}' has no MIDI note definition.")
+            continue  # Skip if the chord has no notes
+
         if arpeggiated == 'yes':
             # Play notes sequentially within the bar
-            note_duration = 1.0 / len(notes)
+            note_duration = bar_duration / len(notes)
             for j, note in enumerate(notes):
-                midi.addNote(track, 0, note, time + j * note_duration, note_duration, volume)
+                start_time = time + j * note_duration
+                midi.addNote(track, channel, note, start_time, note_duration, volume)
         else:
-            # Play chord as block chord
+            # Play chord as a block chord
             for note in notes:
-                midi.addNote(track, 0, note, time, 1, volume)
-        if include_passing_tones == 'yes' and i < len(progression) -1:
-            # Add passing tone between this chord and next chord
-            next_chord_notes = chord_to_midi_notes(progression[i+1])
-            # Simple passing tone: choose a note that connects current chord to next chord
-            if notes and next_chord_notes:
+                midi.addNote(track, channel, note, time, bar_duration, volume)
+
+        if include_passing_tones == 'yes' and i < len(progression) - 1:
+            # Add passing tone between this chord and the next chord
+            next_chord_notes = chord_to_midi_notes(progression[i + 1])
+            if next_chord_notes:
                 passing_note = (notes[-1] + next_chord_notes[0]) // 2
-                midi.addNote(track, 0, passing_note, time + 0.5, 0.5, volume)
-        time += 1  # Move to the next bar
+                passing_note_start = time + bar_duration - 0.5  # Start half a beat before the next bar
+                midi.addNote(track, channel, passing_note, passing_note_start, 0.5, volume)
+
+        time += bar_duration  # Move to the next bar
 
     with open(filename, 'wb') as output_file:
         midi.writeFile(output_file)
@@ -215,6 +224,7 @@ def save_chord_progression_as_midi(progression, filename, arpeggiated=False, inc
 def main():
     display_ascii_art()
     mood = input("Enter a mood for your chord progression: ")
+
     # Ask the user for options
     arpeggiated = input("Do you want the chords to be arpeggiated? (yes/no): ").strip().lower()
     include_passing_tones = input("Do you want to include passing tones between chords? (yes/no): ").strip().lower()
@@ -254,4 +264,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
